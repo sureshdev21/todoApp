@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import CreateTask from "../modals/CreateTask";
 import Card from "./Card";
-import img from './img.png'
-
+import hero from "../hero.svg"
 
 const TodoList = () => {
     const [modal, setModal] = useState(false);
     const [taskList,setTaskList] = useState([])
+
+
 
     useEffect(()=>{
         let arr = localStorage.getItem("taskList")
@@ -16,7 +17,6 @@ const TodoList = () => {
             setTaskList(obj)
         }
     }, [])
-
     const deleteTask = (index) => {
         let tempList = taskList
         tempList.splice(index, 1)
@@ -24,7 +24,6 @@ const TodoList = () => {
         setTaskList(tempList)
         window.location.reload()
     }
-
     const updateListArray = (obj, index) => {
         let tempList = taskList
         tempList[index] = obj
@@ -47,18 +46,25 @@ const TodoList = () => {
 
     }
 
+
+
+
     return (
   <>
       <div className="header text-center">
-          <h3>ToDo List</h3>
+          <img className="imge card-img-top" src={hero}/>
+          <h3 className="text">Stay Organized & Stay Creative</h3>
+
           <button className="btn btn-primary mt-2" onClick={()=> setModal(true)}>Create Task</button>
-          <image></image>
-
       </div>
+
       <div className="task-container">
-          {taskList.map((obj,index)=> <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray}/>)}
+          {taskList.map((obj,index)=> <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray}
+
+         />)}
 
       </div>
+
       <CreateTask toggle={toggle} modal ={modal} save = {saveTask} />
   </>
     );

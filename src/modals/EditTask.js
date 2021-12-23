@@ -16,6 +16,7 @@ const EditTask = ({modal, toggle, updateTask, taskObj}) => {
         }
 
 
+
     }
 
     useEffect(() => {
